@@ -1,0 +1,69 @@
+#!/usr/bin/env node
+let program = require('commander');
+let utils = require('./dist/lib/utils/index')
+
+program
+    .option('-v, --version', '显示版本号', () => {
+      console.log(utils.getVer())
+    })
+    .option('-w, --watch', '监视目录改动')
+    .option('-f, --file', '文件地址')
+
+
+program
+    .command('clean')
+    .description('清空build目录')
+    .action(() => {
+      require('./dist/lib/clean')
+    })
+
+program
+    .command('compilejs')
+    .description('编译JS文件')
+    .action((file) => {
+      require('./dist/lib/compiler/compile-js').compiler(file);
+      require('./dist/lib/compiler/compile-js').clearTrace();
+    })
+
+program
+    .command('buildjs')
+    .description('编译项目JS')
+    .action((cmd) => {
+      require('./dist/lib/build')();
+    })
+
+program
+    .command('new <project>')
+    .description('新建项目')
+    .action((project) => {
+      require('./lib/create')(project)
+    })
+  
+program
+    .command('wx2bd')
+    .description('微信转百度')
+    .action(() => {
+      console.log('微信转百度中');
+      require('./dist/lib/wx2swan')();
+    })
+
+program
+    .command('page <page>')
+    .description('新建页面')
+    .action((project) => {
+      require('./dist/lib/page')(project)
+    })
+
+// program
+//     .command('upgrade')
+//     .description('更新')
+//     .action(() => {
+//       require('./dist/lib/upgrade')
+//     })
+
+program.parse(process.argv)
+
+// no args: show help
+if (!process.argv.slice(2).length) {
+  program.outputHelp();
+}

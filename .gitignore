@@ -1,0 +1,20 @@
+# temp ignore
+*.log
+*.cache
+*.diff
+*.patch
+*.tmp
+
+# system ignore
+.DS_Store
+Thumbs.db
+
+# nodejs ignore
+node_modules/
+.vscode/
+dist
+jsconfig.json
+typings/
+example/mp/*/lib
+.tea
+package-lock.json

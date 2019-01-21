@@ -1,0 +1,5 @@
+<checkbox-group class="remark-group" bindchange="tapChangeHandler">
+  <label class="remark-checkbox {{tempTags[index].checked ? 'checked' : ''}}" s-for="item,index in tags" s-key="index">
+    <checkbox hidden="{{true}}" value="{{item.value}}" checked="{{item.checked}}"/>{{item.label}}
+  </label>
+</checkbox-group>

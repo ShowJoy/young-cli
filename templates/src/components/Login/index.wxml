@@ -1,0 +1,42 @@
+<!-- wx login  -->
+<view class="component-login-container">
+  <button bindlogin class="get-phone" open-type="{{isOnline ? '' : 'getPhoneNumber'}}" bindgetphonenumber="wxLogin">
+  </button>
+  <slot name="tap"></slot>
+</view>
+<!-- phone login -->
+<!-- <view>
+<slot name="phoneLogin" bindtap="phoneDialogShow"></slot>
+</view> -->
+
+
+<!-- phone login -->
+<view class="login-dialog {{dialogShow ? '' : 'close'}}">
+  <image
+    bindtap="closeDialog"
+    class="close-dialog"
+    src="{{cdnPath + 'close.png'}}"></image>
+  <text class="title">手机快捷登录</text>
+  <view class="btn-code" bindtap="showPicDialog">{{countDownTxt||'获取验证码'}}</view>
+  <view class="input-phone-container">
+  <input bindfocus="getFocus" type="number" class="input-phone input" placeholder-style="color: #9399a5;" placeholder="请输入手机号" bindinput="getInputPhone" value="{{inputPhone}}"></input>
+  </view>
+  
+  <input class="input-code input" bindfocus="getFocus" placeholder-style="color: #9399a5;" placeholder="请输入验证码" value="{{inputCode}}" bindinput="getInputCode"></input>
+  <button class="login-btn" bindtap="phoneLogin">登录</button>
+</view>
+<!-- grey background -->
+<view class="bg-layer {{dialogShow ? '' : 'close'}}"></view>
+<!-- picture code dialog -->
+<view class="pic-dialog" wx:if="{{picDialogShow}}">
+  <view class="picCode-container">
+    <view class="pic-input-container">
+      <input placeholder-style="color: #9399A5 ;" class="picCode-input" placeholder="请输入验证码" bindinput="getInputPicCode"></input>
+      <image bindtap="picCodeRefresh" class="pic-code-img" src="{{picCode}}"></image>
+    </view>
+    <view class="picCode-btn-group">
+    <view  class="btn cancel" bindtap="closePicDialog">取消</view>
+    <view class="btn" bindtap="sendSMSCode">验证</view>
+    </view>
+  </view>
+</view>

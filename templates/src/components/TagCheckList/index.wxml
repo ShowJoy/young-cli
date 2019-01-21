@@ -1,0 +1,5 @@
+<checkbox-group class="remark-group" bindchange="tapChangeHandler">
+  <label class="remark-checkbox {{item.checked ? 'checked' : ''}}" wx:for="{{tags}}" wx:key="{{index}}">
+    <checkbox hidden="{{true}}" value="{{item.value}}" checked="{{item.checked}}"/>{{item.label}}
+  </label>
+</checkbox-group>

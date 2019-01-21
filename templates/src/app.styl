@@ -1,0 +1,179 @@
+// 背景
+$color-bg-default = #FFDA00
+$color-bg-blue = #3072F6
+$color-bg-disabled = #F8F8F9
+$color-bg-checked = #E7E8EB
+$color-bg-white = #FFFFFF
+$color-bg-gray = #DFDEDA
+$color-bg-lightgray = #F7F7F7;
+
+// 边框
+$color-border = #E4E6F0
+$color-tag = #9399A5
+$color-border-darkgray = #9399A5
+$color-line = #ECEEF2
+$color-gray-line = #E9E9E9
+$color-line-gray = #C9CCD2
+
+// 字体颜色
+$color-font-gray = #9399A5
+$color-font-black = #101D37
+$color-font-blue = #3072F6
+$color-font-lingtblue = #0087FF
+$color-font-red = #FE615A
+$color-font-default = #F38639 
+
+
+$bold = 700
+
+// 截字
+CutTxt()
+  text-overflow ellipsis
+  overflow hidden
+  white-space nowrap
+
+page
+  height 100%
+
+Borders(path=all, border=2rpx, radius=0)
+  position relative
+  transform scale(1)
+  &:before
+    border-radius radius
+    width 200%
+    height 200%
+    position absolute
+    box-sizing border-box
+    content ''
+    transform-origin 0 0
+    transform scale(.5, .5)
+    left 0
+    top 0
+    z-index -1
+
+  if path==none
+    border none
+  else if path==all
+    &:before
+      border border solid $color-border
+  else
+    &:before
+      border-{path} border solid $color-border
+
+.btn
+  height 30rpx*2
+  border-radius 2rpx*2
+  font-size 12rpx*2
+  color $color-font-black
+  text-align center
+  padding-left 10rpx*2
+  padding-right 10rpx*2
+  margin-left 0
+  margin-right 0
+  min-width 69rpx*2
+  &::after
+    border none !important
+
+.btn-size-large
+  height 100rpx
+  font-size 32rpx
+  border-radius 10rpx
+  display flex
+  align-items center
+  justify-content center
+  font-weight $bold
+  &::after
+    border none !important
+
+.btn-primary
+  background-color $color-bg-default
+  color $color-font-black
+  &::after
+    border none !important
+
+.btn-default
+  background-color white
+  &::after
+    border 2rpx solid $color-border-darkgray
+
+.btn-cancel
+  color $color-font-black
+  border 2rpx solid $color-border-darkgray
+  background white
+  &::after
+    border none !important
+
+.pretty-line
+  width 100%
+  line-height 2rpx
+  border-bottom 4rpx dashed $color-border
+  position relative
+  left 0
+  margin 40rpx 0
+
+  &::before
+    content ''
+    border-radius 100%
+    border 20rpx solid $color-border
+    border-left 20rpx solid transparent
+    border-bottom 20rpx solid transparent
+    position absolute
+    transform rotate(45deg)
+    top -18rpx
+    left -20rpx
+
+  &::after
+    content ''
+    border-radius 100%
+    border 20rpx solid transparent
+    border-left 20rpx solid $color-border
+    border-top 20rpx solid $color-border
+    position absolute
+    transform rotate(-45deg)
+    top -18rpx
+    right -20rpx
+
+.arrow-right
+  border-top 2rpx solid $color-line-gray
+  border-right 2rpx solid $color-line-gray
+  width 16rpx
+  height 16rpx
+  transform rotate(45deg)
+
+.iphonex-padding
+  padding-bottom 68rpx
+
+.iphonex-margin
+  margin-bottom 68rpx
+
+// 凹角
+.nook-top, .nook-bottom
+  width 100%
+  position absolute
+  &::before, &::after
+    content ''
+    top -10rpx
+    display inline-block
+    position absolute
+    border-radius 50%
+    border 10rpx solid $color-bg-disabled
+.nook-top
+  top 0
+  &::before
+    left -10rpx
+    border-right 10rpx solid $color-bg-disabled
+    transform rotate(45deg)
+  &::after
+    right -10rpx
+    border-left 10rpx solid $color-bg-disabled
+    transform rotate(-45deg)
+.nook-bottom
+  bottom 0
+  &::before
+    left -10rpx
+    border-right 10rpx solid $color-bg-disabled
+    transform rotate(-45deg)
+  &::after
+    right -10rpx
+    border-left 10rpx solid $color-bg-disabled
+    transform rotate(45deg)

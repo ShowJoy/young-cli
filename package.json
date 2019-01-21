@@ -1,0 +1,44 @@
+{
+  "name": "young-cli",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "bin": {
+    "young": "./young"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "demo": "nodemon --exec babel-node ./src/demo.js",
+    "build": "babel lib --out-dir dist/lib --plugins=babel-plugin-add-module-exports"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@babel/cli": "^7.2.3",
+    "@babel/core": "^7.2.2",
+    "@babel/node": "^7.2.2",
+    "@babel/plugin-transform-runtime": "^7.2.0",
+    "@babel/preset-env": "^7.2.3",
+    "@babel/runtime": "^7.2.0",
+    "babel-plugin-add-module-exports": "^1.0.0",
+    "del": "^3.0.0",
+    "eslint": "^5.9.0",
+    "fs-extra": "^7.0.1",
+    "gulp": "^4.0.0",
+    "gulp-babel": "^8.0.0",
+    "gulp-babel-minify": "^0.5.0",
+    "gulp-if": "^2.0.2",
+    "gulp-imagemin": "^5.0.3",
+    "gulp-newer": "^1.4.0",
+    "gulp-replace": "^1.0.0",
+    "gulp-stylus": "^2.7.0",
+    "gulp-uglify": "^3.0.1",
+    "gulp-util": "^3.0.8",
+    "nodemon": "^1.18.9"
+  },
+  "dependencies": {
+    "fs-extra": "^7.0.1",
+    "pretty": "^2.0.0",
+    "wx2swan": "^1.2.10"
+  }
+}
