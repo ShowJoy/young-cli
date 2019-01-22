@@ -12,7 +12,6 @@ Thumbs.db
 # nodejs ignore
 node_modules/
 .vscode/
-dist
 jsconfig.json
 typings/
 example/mp/*/lib

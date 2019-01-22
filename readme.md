@@ -5,7 +5,7 @@
 
 ## 准备
 ```
-npm install young-cli gulp-cli -g
+npm install young-cli gulp-cli -g --registry=http://registry.npmjs.lianjia.com:7001/
 young new projectname
 cd projectname
 npm run dev-build

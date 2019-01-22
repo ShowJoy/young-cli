@@ -39,7 +39,7 @@ const defaultConfig = {
     imgFiles: 'tmp/assets/images/**/*.{png,jpg,jpeg,svg,gif}'
   }
 };
-const youngcmd = '../young';
+const youngcmd = 'young';
 
 const config = {};
 Object.keys(defaultConfig).forEach(key => {
