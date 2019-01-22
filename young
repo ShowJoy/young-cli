@@ -43,7 +43,6 @@ program
     .command('wx2bd')
     .description('微信转百度')
     .action(() => {
-      console.log('微信转百度中');
       require('./dist/lib/wx2swan')();
     })
 

@@ -39,6 +39,7 @@ const defaultConfig = {
     imgFiles: 'tmp/assets/images/**/*.{png,jpg,jpeg,svg,gif}'
   }
 };
+const youngcmd = '../young';
 
 const config = {};
 Object.keys(defaultConfig).forEach(key => {
@@ -149,7 +150,7 @@ const watchHandler = (type, file) => {
       const tmp = file.replace('src/', 'build/');
       del([tmp]);
     } else {
-      execSync(`../young compilejs --file=${file}`);
+      execSync(`${youngcmd} compilejs --file=${file}`);
     }
   } else if (type === 'removed') {
     // 其余文件
@@ -186,7 +187,7 @@ const watch = cb => {
 };
 
 const buildjs = () => new Promise((resolved, reject) => {
-  exec('../young buildjs', (error, stdout, stderr) => {
+  exec(`${youngcmd} buildjs`, (error, stdout, stderr) => {
     if (error) {
       console.error(`执行出错: ${error}`);
       reject(error);
@@ -197,24 +198,29 @@ const buildjs = () => new Promise((resolved, reject) => {
 });
 
 const copyWX2BD = () => {
-  const wxmlStream = gulp.src(`${argv.s}/**/*.wxml`)
+  const wxmlStream = gulp.src(`${argv.s || '.'}/**/*.wxml`)
     .pipe(rename({
       extname: '.swan'
     }))
     .pipe(gulp.dest(argv.d));
-  const wxssStream = gulp.src(`${argv.s}/**/*.wxss`)
+  const wxssStream = gulp.src(`${argv.s || '.'}/**/*.wxss`)
     .pipe(rename({
       extname: '.css'
     }))
     .pipe(gulp.dest(argv.d));
-  const baseStream = gulp.src([`${argv.s}/**/*`, `${argv.s}/.*`, `!${argv.s}/**/*.wxss`, `!${argv.s}/**/*.wxml`, `!${argv.s}/build/**/*`])
+  const wxsStream = gulp.src(`${argv.s || '.'}/**/*.wxs`)
+    .pipe(rename({
+      extname: '.filter.js'
+    }))
+    .pipe(gulp.dest(argv.d));
+  const baseStream = gulp.src([`${argv.s || '.'}/**/*`, `${argv.s || '.'}/.*`, `!${argv.s || '.'}/**/*.wxss`, `!${argv.s || '.'}/**/*.wxml`, `!${argv.s || '.'}/build/**/*`])
     .pipe(gulp.dest(argv.d));
 
-  return mergestream(baseStream, wxmlStream, wxssStream);
+  return mergestream(baseStream, wxmlStream, wxssStream, wxsStream);
 };
 
 const wx2bdScript = () => new Promise((resolved, reject) => {
-  exec(`cd ${path.join(__dirname, argv.d)} && ../young wx2bd`, (error, stdout, stderr) => {
+  exec(`cd ${path.join(__dirname, argv.d)} && ${youngcmd} wx2bd`, (error, stdout, stderr) => {
     if (error) {
       console.error(`执行出错: ${error}`);
       reject(error);
