@@ -1,6 +1,6 @@
 {
   "name": "@lianjia/young-cli",
-  "version": "1.0.2",
+  "version": "1.0.4",
   "description": "",
   "main": "index.js",
   "bin": {
@@ -28,6 +28,7 @@
     "nodemon": "^1.18.9"
   },
   "dependencies": {
+    "chalk": "^2.4.2",
     "fs-extra": "^7.0.1",
     "pretty": "^2.0.0"
   }
