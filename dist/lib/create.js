@@ -12,8 +12,6 @@ var log = require('./utils/index').log;
 
 var fs = require('fs-extra');
 
-var nodeFS = require('fs');
-
 var Path = require('path');
 
 module.exports =
@@ -42,38 +40,36 @@ function () {
             return fs.copySync(Path.join(__dirname, '../templates'), Path.resolve("".concat(name)));
 
           case 6:
-            // why??
-            nodeFS.copyFileSync(Path.join(__dirname, '../templates/.npmrc'), Path.resolve("".concat(name, "/.npmrc"))); // write package.json
-
+            // write package.json
             pkgPath = Path.resolve("".concat(name, "/package.json"));
             pkg = require(pkgPath);
             pkg.name = name;
             fs.writeFileSync(pkgPath, JSON.stringify(pkg, null, 2)); //
 
             log.info("\u521B\u5EFA\u76EE\u5F55\u6210\u529F");
-            _context.next = 19;
+            _context.next = 18;
             break;
 
-          case 14:
-            _context.prev = 14;
+          case 13:
+            _context.prev = 13;
             _context.t0 = _context["catch"](0);
             console.log(_context.t0);
             log.error('创建目录失败');
             return _context.abrupt("return");
 
-          case 19:
+          case 18:
             // npm install
             log.info("\u5B89\u88C5\u4F9D\u8D56\u4E2D...");
             cmd("cd ".concat(Path.resolve(name), ";pwd; npm install"), {
               stdio: [0, 1, 2]
             });
 
-          case 21:
+          case 20:
           case "end":
             return _context.stop();
         }
       }
-    }, _callee, this, [[0, 14]]);
+    }, _callee, this, [[0, 13]]);
   }));
 
   return function (_x) {
