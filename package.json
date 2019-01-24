@@ -7,7 +7,6 @@
     "young": "./young"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
     "demo": "nodemon --exec babel-node ./src/demo.js",
     "build": "babel lib --out-dir dist/lib --plugins=babel-plugin-add-module-exports",
     "prepublish": "npm run build"

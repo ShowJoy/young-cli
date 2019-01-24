@@ -38,7 +38,7 @@ program
     .action((project) => {
       require('./lib/create')(project)
     })
-  
+
 program
     .command('wx2bd')
     .description('微信转百度')

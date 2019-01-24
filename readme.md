@@ -10,3 +10,9 @@ young new projectname
 cd projectname
 npm run dev-build
 ```
+
+## 微信转百度
+进入微信小程序更目录下，运行
+```
+gulp -d <百度程序文件夹路径>
+```
