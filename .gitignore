@@ -17,3 +17,5 @@ typings/
 example/mp/*/lib
 .tea
 package-lock.json
+
+!.npmrc
