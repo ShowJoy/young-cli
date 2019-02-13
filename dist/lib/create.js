@@ -46,7 +46,7 @@ function () {
             pkg.name = name;
             fs.writeFileSync(pkgPath, JSON.stringify(pkg, null, 2)); //
 
-            log.info("\u521B\u5EFA\u76EE\u5F55\u6210\u529F");
+            log.info('创建目录成功');
             _context.next = 18;
             break;
 

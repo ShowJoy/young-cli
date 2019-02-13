@@ -4,14 +4,16 @@ var Path = require('path');
 
 var fs = require('fs-extra');
 
+var log = require('./log');
+
 module.exports = {
-  log: require('./log'),
+  log: log,
   getVer: function getVer() {
     var pkg = Path.join(__dirname, '../package.json');
     return require(pkg).version;
   },
-  getProjectConfig: function getProjectConfig() {
-    var config = Path.resolve('./young.config.js');
+  getProjectConfig: function getProjectConfig(dir) {
+    var config = Path.resolve(dir || '.', './young.config.js');
 
     if (!fs.existsSync(config)) {
       return false;
@@ -28,11 +30,11 @@ module.exports = {
 
     return require(config);
   },
-  getDistPath: function getDistPath() {
-    return this.getProjectConfig().dest.baseDir || 'build';
+  getDistPath: function getDistPath(dir) {
+    return this.getProjectConfig(dir).dest.baseDir || 'build';
   },
-  getSrcPath: function getSrcPath() {
-    return this.getProjectConfig().src.baseDir || 'src';
+  getSrcPath: function getSrcPath(dir) {
+    return this.getProjectConfig(dir).src.baseDir || 'src';
   },
   getModulesPath: function getModulesPath() {
     return 'node_modules';

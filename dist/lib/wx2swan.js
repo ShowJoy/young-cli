@@ -15,10 +15,11 @@ var Path = require('path');
 var utils = require('./utils/index');
 
 var log = utils.log;
+var projectConfig = null;
 
 function ignoreMatch(target) {
   var result = false;
-  utils.getProjectConfig().ignore.forEach(function (v) {
+  projectConfig.ignore.forEach(function (v) {
     if (v === Path.parse(target).base) {
       result = true;
     }
@@ -62,6 +63,7 @@ function _walk() {
               _content = _index.default.wx2bdjs(fs.readFileSync(target, {
                 encoding: 'utf-8'
               }));
+              log.info('parse file: ', target);
               fs.writeFileSync(target, _content);
             }
 
@@ -91,7 +93,7 @@ function _walk() {
                   }, _callee2, this);
                 }));
 
-                return function (_x3) {
+                return function (_x5) {
                   return _ref2.apply(this, arguments);
                 };
               }()); // for (const value of dirs) {
@@ -115,29 +117,31 @@ module.exports =
 function () {
   var _ref = (0, _asyncToGenerator2.default)(
   /*#__PURE__*/
-  _regenerator.default.mark(function _callee(callback) {
+  _regenerator.default.mark(function _callee(src, dest, callback) {
     return _regenerator.default.wrap(function _callee$(_context) {
       while (1) {
         switch (_context.prev = _context.next) {
           case 0:
-            if (utils.getProjectConfig()) {
-              _context.next = 3;
+            projectConfig = utils.getProjectConfig(src);
+
+            if (projectConfig) {
+              _context.next = 4;
               break;
             }
 
             log.error('未检测到配置文件，无法编译');
             return _context.abrupt("return");
 
-          case 3:
-            _context.next = 5;
-            return walk(utils.getSrcPath());
+          case 4:
+            _context.next = 6;
+            return walk(dest);
 
-          case 5:
+          case 6:
             if (callback) {
               callback();
             }
 
-          case 6:
+          case 7:
           case "end":
             return _context.stop();
         }
@@ -145,7 +149,7 @@ function () {
     }, _callee, this);
   }));
 
-  return function (_x2) {
+  return function (_x2, _x3, _x4) {
     return _ref.apply(this, arguments);
   };
 }();

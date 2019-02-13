@@ -16,7 +16,6 @@ var fse = require('fs-extra');
 
 var utils = require('../utils/index');
 
-var config = utils.getProjectConfig().js.config;
 var log = utils.log;
 var modulesDir = 'node_modules';
 var isPrivatePack = /^\@[\w\d\-\_\.]+\/[\w\d\-_\.]+$/; // fix infinite loop
@@ -98,19 +97,21 @@ function analyse(code, from) {
   });
 }
 
-function compiler(_x) {
+function compiler(_x, _x2) {
   return _compiler.apply(this, arguments);
 }
 
 function _compiler() {
   _compiler = (0, _asyncToGenerator2.default)(
   /*#__PURE__*/
-  _regenerator.default.mark(function _callee(from) {
-    var result, to, tag;
+  _regenerator.default.mark(function _callee(from, dir) {
+    var config, result, to, tag;
     return _regenerator.default.wrap(function _callee$(_context) {
       while (1) {
         switch (_context.prev = _context.next) {
           case 0:
+            config = utils.getProjectConfig(dir).js.config;
+
             if (config.sourceMaps === undefined) {
               config.sourceMaps = 'inline';
             }
@@ -118,13 +119,13 @@ function _compiler() {
             config.comments = false; // fix infinite require loop not on watching mode
 
             if (!jsTree[from]) {
-              _context.next = 4;
+              _context.next = 5;
               break;
             }
 
             return _context.abrupt("return");
 
-          case 4:
+          case 5:
             try {
               if (from.indexOf(modulesDir) > -1) {
                 result = {
@@ -154,7 +155,7 @@ function _compiler() {
               }
             }
 
-          case 5:
+          case 6:
           case "end":
             return _context.stop();
         }

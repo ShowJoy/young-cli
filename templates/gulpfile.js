@@ -197,45 +197,6 @@ const buildjs = () => new Promise((resolved, reject) => {
   });
 });
 
-const copyWX2BD = () => {
-  const wxmlStream = gulp.src(`${argv.s || '.'}/**/*.wxml`)
-    .pipe(rename({
-      extname: '.swan'
-    }))
-    .pipe(gulp.dest(argv.d));
-  const wxssStream = gulp.src(`${argv.s || '.'}/**/*.wxss`)
-    .pipe(rename({
-      extname: '.css'
-    }))
-    .pipe(gulp.dest(argv.d));
-  const wxsStream = gulp.src(`${argv.s || '.'}/**/*.wxs`)
-    .pipe(rename({
-      extname: '.filter.js'
-    }))
-    .pipe(gulp.dest(argv.d));
-  const baseStream = gulp.src([`${argv.s || '.'}/**/*`, `${argv.s || '.'}/.*`, `!${argv.s || '.'}/**/*.wxss`, `!${argv.s || '.'}/**/*.wxml`, `!${argv.s || '.'}/build/**/*`])
-    .pipe(gulp.dest(argv.d));
-
-  return mergestream(baseStream, wxmlStream, wxssStream, wxsStream);
-};
-
-const wx2bdScript = () => new Promise((resolved, reject) => {
-  exec(`cd ${path.join(__dirname, argv.d)} && ${youngcmd} wx2bd`, (error, stdout, stderr) => {
-    if (error) {
-      console.error(`执行出错: ${error}`);
-      reject(error);
-      return;
-    }
-    console.log('stdout', stdout)
-    resolved('');
-  });
-});
-
-gulp.task('wx2bd', gulp.series(
-  copyWX2BD,
-  wx2bdScript
-));
-
 // dev
 gulp.task('default', gulp.series(
   cleanDist,

@@ -13,7 +13,7 @@ module.exports = {
         '@babel/proposal-object-rest-spread'],
     },
   },
-  ignore: ['node_modules', 'mock', 'dist', '.DB_store', '.DS_Store'],
+  ignore: ['node_modules', 'dist', '.DB_store', '.DS_Store'],
   cdnPath: '',
   src: {},
   dest: {}

@@ -40,10 +40,18 @@ program
     })
 
 program
-    .command('wx2bd')
+    .command('wx2bd <src> [dest]')
     .description('微信转百度')
-    .action(() => {
-      require('./dist/lib/wx2swan')();
+    .action((src, dest) => {
+      if (!dest) {
+        dest = src;
+        src = '.';
+      }
+      utils.log.info(src, dest);
+
+      require('./dist/lib/copyWX2BD')(src, dest, () => {
+        require('./dist/lib/wx2swan')(src, dest);
+      });
     })
 
 program
