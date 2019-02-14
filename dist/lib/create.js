@@ -37,7 +37,7 @@ function () {
 
           case 4:
             _context.next = 6;
-            return fs.copySync(Path.join(__dirname, '../templates'), Path.resolve("".concat(name)));
+            return fs.copySync(Path.join(__dirname, '../templates/wx'), Path.resolve("".concat(name)));
 
           case 6:
             // write package.json

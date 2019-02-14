@@ -31,7 +31,6 @@ const defaultConfig = {
   dest: {
     baseDir: 'build',
     imgDir: 'build/images',
-    cssFiles: 'build/**/*.wxss',
   },
   tmp: {
     baseDir: 'tmp',

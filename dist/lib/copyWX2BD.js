@@ -26,6 +26,8 @@ function walk(target) {
   }
 
   if (fs.lstatSync(target).isFile()) {
+    var filename = Path.basename(target);
+
     switch (Path.extname(target)) {
       case '.wxss':
         fs.renameSync(target, Path.join(Path.dirname(target), "".concat(Path.basename(target).split('.')[0], ".css")));
@@ -41,6 +43,16 @@ function walk(target) {
 
       default:
         break;
+    }
+
+    if (filename === 'project.config.json') {
+      fs.renameSync(target, Path.join(Path.dirname(target), "".concat(Path.basename(target).split('.')[0], ".swan.json")));
+    } else if (filename === 'young.config.js') {
+      var content = fs.readFileSync(Path.resolve(target), {
+        encoding: 'utf-8'
+      });
+      console.log('content', content);
+      fs.writeFileSync(Path.resolve(target), content.replace(/(htmlFiles: ")[^"]+(")/, '$1src/**/*.swan$2'));
     }
   } else if (fs.lstatSync(target).isDirectory()) {
     var dirs = fs.readdirSync(target);

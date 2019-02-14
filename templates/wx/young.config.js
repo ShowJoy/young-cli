@@ -15,6 +15,8 @@ module.exports = {
   },
   ignore: ['node_modules', 'dist', '.DB_store', '.DS_Store'],
   cdnPath: '',
-  src: {},
+  src: {
+    htmlFiles: "src/**/*.wxml"
+  },
   dest: {}
 };

@@ -55,15 +55,16 @@ function _walk() {
             }
 
             if (Path.extname(target) === '.swan') {
+              log.info('parse wxml file: ', target);
               content = _index.default.wxml2swan(fs.readFileSync(target, {
                 encoding: 'utf-8'
               }));
               fs.writeFileSync(target, content);
             } else if (Path.extname(target) === '.js') {
+              log.info('parse js file: ', target);
               _content = _index.default.wx2bdjs(fs.readFileSync(target, {
                 encoding: 'utf-8'
               }));
-              log.info('parse file: ', target);
               fs.writeFileSync(target, _content);
             }
 
